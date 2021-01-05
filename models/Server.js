@@ -9,7 +9,6 @@ class Server {
 		this.app = express();
 		this.port = process.env.PORT;
 
-		this.app.use(cors());
 		//Http server
 		this.server = http.createServer(this.app);
 
@@ -22,6 +21,7 @@ class Server {
 
 	middleware() {
 		this.app.use(express.static(path.resolve(__dirname, "../public")));
+		this.app.use(cors());
 	}
 
 	configurarSockets() {
