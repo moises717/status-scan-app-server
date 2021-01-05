@@ -15,12 +15,17 @@ class Server {
 		//Configueraciones de sockets
 
 		this.io = socketIo(this.server, {
-			/* configuraciones */
+			cors: {
+				origin: "*",
+				methods: ["GET", "POST"],
+			},
 		});
 	}
 
 	middleware() {
 		this.app.use(express.static(path.resolve(__dirname, "../public")));
+
+		//cors
 		this.app.use(cors());
 	}
 
