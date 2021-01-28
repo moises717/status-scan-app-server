@@ -1,3 +1,5 @@
+const { getEstaciones, grabarDatos, eliminarEstacion } = require("../controllers/estaciones");
+
 class Sockets {
 	constructor(io) {
 		this.io = io;
@@ -8,12 +10,23 @@ class Sockets {
 	socketEvents() {
 		//On connection
 
-		this.io.on("connection", (socket) => {
+		this.io.on("connection", async (socket) => {
+			console.log("cliente connectado");
 			//Conectar eventos
-			socket.on("msg-to-server", (data) => {
-				console.log(data);
 
-				this.io.emit("msg-from-server", data);
+			this.io.emit("lista", await getEstaciones());
+
+			socket.on("estacion", async (data) => {
+				grabarDatos(data);
+				this.io.emit("lista", await getEstaciones());
+			});
+
+			socket.on("eliminar", async (id, callback) => {
+				const eliminar = await eliminarEstacion(id);
+
+				callback({ message: eliminar });
+
+				this.io.emit("lista", await getEstaciones());
 			});
 		});
 	}

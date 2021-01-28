@@ -1,11 +1,11 @@
 {
-  "name": "01-socket-servidor-basico",
+  "name": "servidor-app-estatus-scan",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "node index",
-    "dev": "nodemon index"
+    "dev": "nodemon index -e js,html"
   },
   "keywords": [],
   "author": "",
@@ -14,6 +14,11 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "nedb": "^1.8.0",
+    "nodemon": "^2.0.7",
     "socket.io": "^3.0.4"
+  },
+  "devDependencies": {
+    "localtunnel": "^2.0.1"
   }
 }
