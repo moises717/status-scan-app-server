@@ -53,7 +53,7 @@ class Server {
 		this.configurarSockets();
 
 		this.server.listen(this.port, () => {
-			this.tunel(); // Esta funcion solo es para desarrollo
+			//this.tunel(); // Esta funcion solo es para desarrollo
 
 			console.log("Server on port:", this.port);
 		});
